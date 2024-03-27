@@ -88,10 +88,14 @@ class Title:
 
     def Login(self):
         messagebox.showinfo("Login", "Redirecting to student login")
+        root.destroy()
+        import Login
 
 
     def teacher_login(self):
         messagebox.showinfo("Login", "Redirecting to teacher login")
+        root.destroy()
+        import login_t
 
     def show_next_image(self):
         # Load image and get original position
