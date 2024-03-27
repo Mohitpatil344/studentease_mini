@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": ".idea"
+		},
+		{
+			"path": ".vscode"
+		},
+		{
+			"path": "__pycache__"
+		},
+		{
+			"path": "Include"
+		},
+		{
+			"path": "Lib"
+		},
+		{
+			"path": "Scripts"
+		},
+		{
+			"path": "venv"
+		}
+	]
+}

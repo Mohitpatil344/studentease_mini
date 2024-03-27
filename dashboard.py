@@ -15,12 +15,12 @@ class Title:
                             font="Baskerville  45 italic bold", padx=10, pady=10)
         lbl_title.pack(fill="x")  # Pack the label onto the title frame
 
-        # Frame for image sliding
+        # Frame for image sliding   
         image_frame = tk.Frame(self.root, bg="red", relief=SUNKEN)
         image_frame.grid(row=1, column=0, sticky="nsew")
 
         # Load images
-        self.images = ["img1.jpg", "img2.jpg"]
+        self.images = ["d3.jpg","d4.jpg", "d2.jpg"]
         self.current_image_index = 0
         self.original_positions = {}  # Dictionary to store original positions
 

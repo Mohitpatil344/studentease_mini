@@ -67,14 +67,14 @@ pdf_button = Button(frame2, text="Upload PDF", command=browse_pdf)
 pdf_button.pack(pady=10)
 
 pdf_tree = ttk.Treeview(frame2)
-pdf_tree['columns'] = ("Sr no.", "Lecture", "Date")
+pdf_tree['columns'] = ("Sr no.", "Notes", "Date")
 pdf_tree.column("#0", width=0, stretch=NO)
 pdf_tree.column("Sr no.", anchor=W, width=10)
-pdf_tree.column("Lecture", anchor=CENTER, width=200)
+pdf_tree.column("Notes", anchor=CENTER, width=200)
 pdf_tree.column("Date", anchor=W, width=120)
 
 pdf_tree.heading("Sr no.", text="Sr no.", anchor=W)
-pdf_tree.heading("Lecture", text="Lecture", anchor=CENTER)
+pdf_tree.heading("Notes", text="Notes", anchor=CENTER)
 pdf_tree.heading("Date", text="Date", anchor=W)
   
 pdf_count = 0

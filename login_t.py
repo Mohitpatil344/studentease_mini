@@ -1,6 +1,8 @@
 import tkinter
 from tkinter import messagebox
 
+
+
 def toggle_password_visibility():
     if show_password.get():
         password_entry.config(show="")
@@ -15,8 +17,9 @@ window.configure(bg='#659DBD')
 def login():
     username = "teacher"
     password = "12345"
-    if username_entry.get()==username and password_entry.get()==password:
+    if username_entry.get() == username and password_entry.get() == password:
         messagebox.showinfo(title="Login Success", message="You successfully logged in.")
+        div_choose()
     else:
         messagebox.showerror(title="Error", message="Invalid login.")
 
@@ -51,5 +54,10 @@ show_password_checkbox = tkinter.Checkbutton(frame, text="Show Password", variab
 show_password_checkbox.grid(row=2, column=3, pady=5, sticky='w')
 
 frame.pack(expand=True, pady=(window.winfo_reqheight() - frame.winfo_reqheight()) // 2)
+
+def div_choose():
+    # messagebox.showinfo("Login", "Redirecting to student login")
+    window.destroy()
+    import div_choose
 
 window.mainloop()
