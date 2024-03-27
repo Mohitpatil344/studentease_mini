@@ -8,7 +8,7 @@ from tkVideoPlayer import TkinterVideo
 def update_duration(event):
     """ updates the duration after finding the duration """
     duration = vid_player.video_info()["duration"]
-    end_time["text"] = str(datetime.timedelta(seconds=duration))
+    end_time["text"] = str(datetime.timedelta(seconds = duration))
     progress_slider["to"] = duration
 
 
@@ -20,7 +20,6 @@ def update_scale(event):
 def load_video():
     """ loads the video """
     file_path = filedialog.askopenfilename()
-
     if file_path:
         vid_player.load(file_path)
 
@@ -28,17 +27,16 @@ def load_video():
         play_pause_btn["text"] = "Play"
         progress_value.set(0)
 
-
 def seek(value):
     """ used to seek a specific timeframe """
-    vid_player.seek(int(value))
+    vid_player.seek(int(value))  # Remove the 'whence' argument
 
 
 def skip(value: int):
-    """ skip seconds """
-    vid_player.seek(int(progress_slider.get())+value)
+    """Skip seconds."""
+    vid_player.seek(int(progress_slider.get()) + value)
     progress_value.set(progress_slider.get() + value)
-
+    
 
 def play_pause():
     """ pauses and plays """
@@ -61,6 +59,7 @@ def video_ended(event):
 root = tk.Tk()
 root.title("Tkinter media")
 root.geometry("1240x750")
+root.title("Video player")
 
 load_btn = tk.Button(root, text="Load", command=load_video)
 load_btn.pack()
@@ -71,8 +70,8 @@ vid_player.pack(expand=True, fill="both")
 play_pause_btn = tk.Button(root, text="Play", command=play_pause)
 play_pause_btn.pack()
 
-skip_plus_5sec = tk.Button(root, text="Skip -5 sec", command=lambda: skip(-5))
-skip_plus_5sec.pack(side="left")
+skip_plus_5sec = tk.Button(root, text="Skip -5 sec", command=lambda:skip(-5)).pack(side="left")
+
 
 start_time = tk.Label(root, text=str(datetime.timedelta(seconds=0)))
 start_time.pack(side="left")
@@ -90,7 +89,7 @@ vid_player.bind("<<Duration>>", update_duration)
 vid_player.bind("<<SecondChanged>>", update_scale)
 vid_player.bind("<<Ended>>", video_ended )
 
-skip_plus_5sec = tk.Button(root, text="Skip +5 sec", command=lambda: skip(5))
-skip_plus_5sec.pack(side="left")
+skip_plus_5sec = tk.Button(root, text="Skip +5 sec", command=lambda: skip(5)).pack(side="left")
+
 
 root.mainloop()
