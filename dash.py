@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import Scrollbar, messagebox
 from tkinter import filedialog
 import os
+import subprocess
 
 root = None
 frame1 = None
@@ -70,9 +71,6 @@ def send_message(event=None):
         message_entry.delete(0, tk.END)
 
 
-import subprocess
-
-
 def logout():
     # Function to handle logout button click
     global small_frame
@@ -101,7 +99,7 @@ def hide_details(event):
             small_frame = None
 
 
-def toggle_dropdown():
+def toggle_dropdown(event=None):
     if dropdown_frame.winfo_ismapped():
         canvas2.itemconfigure(dropdown_button, text="Classes")
         dropdown_frame.place_forget()  # Use place_forget to hide the dropdown frame
@@ -124,11 +122,25 @@ def toggle_dropdown():
         canvas2.tag_lower(dropdown_frame)
 
 
+
 def on_mousewheel(event):
     canvas = event.widget
     if canvas.cget("scrollregion"):
         shift = canvas.winfo_height() // 100 * ((-1) if event.delta < 0 else 1)
         canvas.yview_scroll(shift, "units")
+
+
+def class_1():
+    root.destroy()
+    import class_1  # Import the next page
+
+def D10B():
+    root.destroy()
+    import D10B
+
+def d10c():
+    root.destroy()
+    import d10c        
 
 
 root = tk.Tk()
@@ -161,8 +173,13 @@ canvas2 = tk.Canvas(frame1, bg="pink", width=200, height=500, highlightthickness
 canvas2.grid(row=1, column=0, sticky="nsew")
 widgets.append(canvas2)
 
-scrollbar_y1 = Scrollbar(frame1, orient=tk.VERTICAL, command=canvas2.yview)
-scrollbar_y1.grid(row=1, column=1, sticky="ns")  # Corrected
+scrollbar_y1 = Scrollbar(
+    frame1, 
+    orient=tk.VERTICAL, 
+    command=canvas2.yview
+)
+scrollbar_y1.grid(row=1, column=1, sticky="ns")  # Corrected placement
+
 
 # placement
 canvas2.configure(yscrollcommand=scrollbar_y1.set)
@@ -179,15 +196,14 @@ canvas4.bind("<Configure>", lambda e: canvas4.configure(scrollregion=canvas4.bbo
 canvas1.bind("<Configure>", lambda e: canvas1.configure(scrollregion=canvas1.bbox("all")))
 canvas2.bind("<Configure>", lambda e: canvas2.configure(scrollregion=canvas2.bbox("all")))
 
-home_button = tk.Button(canvas1, text="Home",font=("arial",10),width=25,height=3,background="LIGHTBLUE")
-home_button.grid(row=0,column=0)
+home_button = tk.Button(canvas1, text="Home", font=("arial", 10), width=25, height=3, background="LIGHTBLUE")
+home_button.grid(row=0, column=0)
 
 # Create dropdown button with border and white background
 dropdown_button = canvas2.create_text(150, 20, text="Classes", font=("Arial", 10), fill="pink", anchor="center")
 # Add border and white background
 canvas2.itemconfigure(dropdown_button, font=("Arial", 10, "bold"), fill="black")  # Change text color to black and add bold font
 canvas2.coords(dropdown_button, 110, 20)
-
 
 # Create a rectangle behind the text for the button appearance
 button_coords = canvas2.bbox(dropdown_button)
@@ -203,13 +219,12 @@ rect_coords = (button_coords[0] - rect_offset, button_coords[1] - rect_offset, b
 canvas2.tag_bind(dropdown_button, "<Button-1>", lambda event: toggle_dropdown())
 
 dropdown_frame = tk.Frame(canvas2)
-tk.Label(dropdown_frame, text="Enrolled Classes",width=28,height=3).pack()
+tk.Label(dropdown_frame, text="Enrolled Classes", width=28, height=3).pack()
 heading_line = tk.Frame(dropdown_frame, height=2, bg="black")
 heading_line.pack(fill=tk.X)
-tk.Button(dropdown_frame, text="D10A",width=25,height=3).pack()
-tk.Button(dropdown_frame, text="D10B",width=25,height=3).pack()
-tk.Button(dropdown_frame, text="D10C",width=25,height=3).pack()
-
+tk.Button(dropdown_frame, text="D10A", width=25, height=3, command=class_1).pack()  # Add command to go to next page
+tk.Button(dropdown_frame, text="D10B", width=25, height=3,command=D10B).pack()
+tk.Button(dropdown_frame, text="D10C", width=25, height=3,command=d10c).pack()
 
 widgets = [frame1, frame2, frame3, canvas1, canvas2, canvas4]
 
@@ -237,4 +252,3 @@ canvas2.bind("<Configure>", on_configure)
 canvas4.bind("<MouseWheel>", on_mousewheel)
 
 root.mainloop()
-
